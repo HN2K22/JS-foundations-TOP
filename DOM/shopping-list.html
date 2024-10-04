@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping list example</title>
+    <style>
+      li {
+        margin-bottom: 10px;
+      }
+
+      li button {
+        font-size: 12px;
+        margin-left: 20px;
+        color: #666;
+      }
+    </style>
+  </head>
+  <body>
+
+    <h1>My shopping list</h1>
+
+    <div> 
+      <label for="item">Enter a new item:</label>
+      <input type="text" name="item" id="item">
+      <button>Add item</button>
+    </div>
+
+    <ul>
+
+    </ul>
+
+    <script>
+      const textInput = document.querySelector("input")
+      const addItem = document.querySelector("button")
+      const listItems = document.querySelector("ul")
+
+      addItem.addEventListener("click",function addToList(){
+        if(textInput.value != ""){
+         const input = textInput.value
+         textInput.value = '';
+         const listItem = document.createElement("li")
+         const text = document.createElement("span")
+         const delBtn = document.createElement("button")
+         
+         listItems.appendChild(listItem)
+         listItem.append(text,delBtn)
+         text.textContent = `${input}   `;
+         delBtn.textContent = "Delete";
+         
+         delBtn.addEventListener("click", ()=> {
+            listItems.removeChild(listItem)
+         })
+
+         textInput.focus()
+        }
+         else{
+          alert("Error Not a valid Input")
+         }
+})
+      
+    </script>
+  </body>
+</html>
